@@ -1,0 +1,18 @@
+# 本地密钥配置，切勿提交
+config.json
+
+# 构建产物
+build/
+dist/
+__pycache__/
+*.pyc
+*.pyo
+
+# 虚拟环境
+.venv/
+
+# 本地下载数据
+downloads/
+
+# 离线翻译模型（体积大，用 fetch_model.py 获取）
+models/

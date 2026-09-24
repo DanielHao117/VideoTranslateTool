@@ -1,0 +1,6 @@
+Flask>=3.0
+yt-dlp>=2024.8.6
+imageio-ffmpeg>=0.5.1
+ctranslate2>=4.0
+sentencepiece>=0.2
+curl_cffi>=0.7

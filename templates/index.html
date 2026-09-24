@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> 视频翻译助手</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="logo"></span>
+        <div>
+          <div class="brand-sub">视频翻译助手</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-view="download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v11" />
+            <path d="m7.5 10 4.5 4.5L16.5 10" />
+            <path d="M5 21h14" />
+          </svg>
+          <span>视频下载</span>
+        </button>
+        <button class="nav-item" data-view="play">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" />
+            <path d="m10 8.5 5.5 3.5L10 15.5z" />
+          </svg>
+          <span>在线播放</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="foot-label">当前视频</div>
+        <div id="nowPlaying" class="foot-video">未解析</div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section id="view-download" class="view">
+        <section class="card card-dark">
+          <h2 class="card-title">视频链接</h2>
+          <div class="row">
+            <input id="url" type="text" placeholder="https://www.youtube.com/watch?v=..." />
+            <button id="fetchBtn" class="primary">解析</button>
+          </div>
+          <div id="meta" class="meta hidden">
+            <img id="thumb" alt="" />
+            <div class="meta-text">
+              <div id="title" class="title"></div>
+              <div id="sub" class="sub"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card hidden" id="downloadCard">
+          <h2 class="card-title">下载视频</h2>
+          <div class="grid">
+            <div>
+              <label>清晰度 / 格式</label>
+              <select id="format"></select>
+            </div>
+          <div>
+            <label>保存目录</label>
+            <div class="row">
+              <input id="saveDir" type="text" placeholder="默认项目 downloads 目录" />
+              <button id="pickBtn">选择</button>
+            </div>
+          </div>
+        </div>
+        <label class="check">
+          <input type="checkbox" id="genSrt" />
+          同时生成双语字幕文件（.zh-en.srt，可与视频一起用播放器加载）
+        </label>
+        <button id="downloadBtn" class="primary big">开始下载</button>
+
+          <div id="progressWrap" class="hidden">
+            <div class="bar"><div id="bar" class="bar-fill"></div></div>
+            <div class="progress-line">
+              <div id="progressText" class="sub"></div>
+              <button id="pauseBtn" class="hidden">暂停</button>
+            </div>
+          </div>
+
+          <button id="playLocalBtn" class="big hidden">▶ 播放已下载的视频</button>
+        </section>
+      </section>
+
+      <section id="view-play" class="view hidden">
+        <section class="card" id="subCard">
+          <h2 class="card-title">字幕同步播放</h2>
+          <div id="ctrlRow" class="ctrl-row">
+            <div class="ctrl-main">
+              <div class="ctrl-group">
+                <span class="src-label">播放源</span>
+                <button id="onlineBtn" class="toggle active">在线</button>
+                <button id="localBtn" class="toggle" disabled>本地</button>
+              </div>
+              <div class="ctrl-group">
+                <select id="subMode" class="mini">
+                  <option value="both">双语字幕</option>
+                  <option value="en">仅英文</option>
+                  <option value="zh">仅中文</option>
+                  <option value="off">关闭字幕</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div id="subStatus" class="sub"></div>
+          <div id="cacheStatus" class="sub"></div>
+          <div class="player-wrap">
+            <div class="player-col">
+              <div class="player-frame">
+                <video id="player" controls playsinline></video>
+                <div id="overlay" class="overlay"></div>
+                <button id="soundBtn" type="button" class="sound-btn hidden">点击开启声音</button>
+              </div>
+              <audio id="playerAudio"></audio>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
