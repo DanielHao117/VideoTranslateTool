@@ -3,10 +3,12 @@ import os
 
 from PyInstaller.utils.hooks import collect_all
 
+# config.json is an optional per-machine file (gitignored), so it is NOT
+# bundled. The program runs with zero configuration, or reads a local
+# config.json placed next to the exe / in the working directory at runtime.
 datas = [
     ("templates", "templates"),
     ("static", "static"),
-    ("config.json", "."),
 ]
 
 # Bundle the offline translation model (when fetched) so the exe is
