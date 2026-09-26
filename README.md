@@ -1,6 +1,6 @@
 # VideoTranslateTool
 
-YouTube 视频下载 + 双语字幕 + 在线播放的本地工具，可打包成单个 exe，双击即用。
+Watch and download YouTube videos locally with bilingual (EN·ZH) subtitles and fully offline English→Chinese translation. Builds into a single self-contained Windows EXE — no ffmpeg or model downloads required.
 
 > 仓库地址：https://github.com/DanielHao117/VideoTranslateTool
 
